@@ -1,0 +1,54 @@
+
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import Layout from './layout/Layout'
+import PageNotFound from './pages/PageNotFound'
+import Home from './pages/Home'
+import LayoutAdmin from './layout/admin/LayoutAdmin'
+import HomeAdmin from './pages/admin/HomeAdmin'
+
+
+// CSS
+import './App.css'
+import Login from './pages/Login'
+
+
+function App () {
+
+  const router = createBrowserRouter(
+
+    [
+
+
+      {
+        // PUBLIC - layout
+        element: <Layout />,
+        errorElement: <PageNotFound />,
+        children: [
+          { path: "/", element: <Home /> },
+          { path: "login", element: <Login /> },
+        ]
+      },
+
+
+
+      {
+        // ADMIN - layoutadmin
+        element: <LayoutAdmin />,
+        errorElement: <PageNotFound />,
+        children: [
+          { path: "/admin", element: <HomeAdmin /> },
+          // { path: "admin/news", element: <NewsAdmin /> },
+        ]
+      }
+    ]
+  )
+
+
+  return (
+    <div data-theme="dark">
+      <RouterProvider router={ router } />
+    </div>
+  )
+}
+
+export default App
